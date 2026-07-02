@@ -21,8 +21,8 @@ chown -R $SSH_USER:$SSH_USER /home/$SSH_USER/.ssh/
 echo "Checkout lib"
 mkdir -p $LIB_PATH
 cd $LIB_PATH
-git clone https://github.com/alliefitter/calvin_and_hobbes_viewer.git
-cd calvin_and_hobbes_viewer
+git clone https://raw.githubusercontent.com/alliefitter/shazam.git
+cd shazam
 
 echo "Build shazam"
 curl -sSL https://install.python-poetry.org | python3 -
