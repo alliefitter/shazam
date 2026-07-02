@@ -1,0 +1,15 @@
+[Unit]
+Description=Allow shazam user access to xserver
+After=graphical.target
+
+[Service]
+Type=oneshot
+Environment="DISPLAY=:0"
+User=SSH_USER
+Group=SSH_USER
+ExecStart=/usr/bin/xhost-shazam
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical.target

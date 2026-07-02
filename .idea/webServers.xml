@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b93a7d41-518d-42dd-8ce9-a293fdb4ca73" name="shazam">
+        <fileTransfer rootFolder="/home/afitter" accessType="SFTP" host="shazam.home" port="22" sshConfigId="89d9e1e6-7ced-427f-af23-1f72e03e556c" sshConfig="afitter@shazam.home:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseRsync="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

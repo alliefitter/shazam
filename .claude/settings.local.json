@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/ruff check *)",
+      "WebSearch",
+      "WebFetch(domain:docs.audd.io)"
+    ]
+  }
+}

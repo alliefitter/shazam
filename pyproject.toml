@@ -1,0 +1,73 @@
+[project]
+name = "shazam"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.18.5",
+    "audd>=1.5.12",
+    "fastapi>=0.138.0",
+    "httpx>=0.28.1",
+    "numpy>=2.5.0",
+    "pillow>=12.2.0",
+    "pyacrcloud>=1.0.12",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.2",
+    "python-acrcloud>=1.3",
+    "python-xlib>=0.33",
+    "scipy>=1.18.0",
+    "scipy-stubs~=1.18.0",
+    "sounddevice>=0.5.5",
+    "sqlalchemy>=2.0.51",
+    "uvicorn>=0.49.0",
+]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.19",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shazam"]
+include = [
+    "src/shazam/share/**/*",
+]
+
+[tool.ruff.lint]
+# Select specific rule sets to enable.
+# E and W: pycodestyle errors and warnings.
+# F: pyflakes errors.
+# I: isort rules for imports.
+# N: PEP8 naming rules.
+select = ["E", "W", "F", "I", "N"]
+
+# Ignore specific rules project-wide.
+ignore = ["E501"] # Example: Ignore line-too-long warnings
+
+# Extend selected rule sets with additional checks (e.g., for docstrings).
+# extend-select = ["D"] # Uncomment to enable pydocstyle rules
+
+# Specific settings for individual lint plugins.
+[tool.ruff.lint.pydocstyle]
+convention = "pep257" # Enforce PEP 257 docstring conventions
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10 # Maximum cyclomatic complexity allowed
+
+# Formatter configuration.
+[tool.ruff.format]
+# Indent style (e.g., "space" or "tab").
+indent-style = "space"
+# Line ending style (e.g., "lf" for Unix-style).
+line-ending = "lf"
+# Whether to format code snippets within docstrings.
+docstring-code-format = true
+# Line length for code snippets within docstrings.
+docstring-code-line-length = 120

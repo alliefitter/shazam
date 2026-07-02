@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="shazam.home" id="89d9e1e6-7ced-427f-af23-1f72e03e556c" keyPath="$USER_HOME$/.ssh/shazam" port="22" nameFormat="DESCRIPTIVE" username="afitter" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

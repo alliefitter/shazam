@@ -1,0 +1,15 @@
+[Unit]
+Description=Shazam daemon
+After=shazam-xhost.service
+
+[Service]
+Environment="DISPLAY=:0"
+EnvironmentFile=SHARE_PATH.env
+User=shazam
+Group=shazam
+ExecStart=/app/shazam/venv/bin/python -m shazam.daemon
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical.target
