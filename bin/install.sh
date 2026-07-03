@@ -26,7 +26,7 @@ cd shazam
 
 echo "Build shazam"
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv python install 3.12
+"$UV" python install 3.12
 "$UV" build
 
 echo "Adding users"
@@ -42,7 +42,7 @@ cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/config.txt /boot/firmware/
 sed -ie "s/SSH_USER/$SSH_USER/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
 sed -ie "s/SSH_USER/$SSH_USER/g" /etc/systemd/system/shazam-xhost.conf
-sed -ie "s/SHARE_PATH/$SHARE_PATH/g" /etc/systemd/system/shazam-daemon.conf
+sed -ie "s/SHARE_PATH/$SHARE_PATH/g" /etc/systemd/system/shazam-daemon.service
 cp scripts/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
 
