@@ -26,8 +26,6 @@ cd shazam
 
 echo "Build shazam"
 curl -LsSf https://astral.sh/uv/install.sh | sh
-"$UV" python install 3.12
-"$UV" python pin 3.12
 "$UV" build
 
 echo "Adding users"
@@ -36,15 +34,19 @@ sudo useradd -r -s /bin/false shazam
 echo "Deploying"
 mkdir -p /app/shazam
 cp dist/*.whl /app/shazam
+cp alembic.ini /app/shazam
 cp etc/nginx/* /etc/nginx/conf.d
 cp etc/systemd/* /etc/systemd/system/
 cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/config.txt /boot/firmware/
+touch "${SHARE_PATH}shazam.db"
 sed -ie "s/SSH_USER/$SSH_USER/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
 sed -ie "s/SSH_USER/$SSH_USER/g" /etc/systemd/system/shazam-xhost.service
 sed -ie "s/SHARE_PATH/$SHARE_PATH/g" /etc/systemd/system/shazam-daemon.service
 cp bin/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
+"$UV" sync
+"$UV" run alembic upgrade head
 
 echo "Enabling i2s slave mode"
 git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${SHARE_PATH}i2s"
@@ -55,10 +57,8 @@ cp genericstereoaudiocodec.dtbo /boot/firmware/overlays
 
 echo "Installing shazam"
 cd /app/shazam
-"$UV" run python -m venv venv
-./venv/bin/pip3 install *.whl
-touch "${SHARE_PATH}shazam.db"
-./venv/bin/alembic -c $SHARE_PATHshazam/alembic.ini upgrade head
+"$UV" venv venv
+"$UV" pip install *.whl --python venv/bin/python
 
 echo "Changing app ownership"
 chown -R shazam:shazam /app/shazam
