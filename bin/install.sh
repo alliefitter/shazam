@@ -41,9 +41,9 @@ cp etc/systemd/* /etc/systemd/system/
 cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/config.txt /boot/firmware/
 sed -ie "s/SSH_USER/$SSH_USER/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
-sed -ie "s/SSH_USER/$SSH_USER/g" /etc/systemd/system/shazam-xhost.conf
+sed -ie "s/SSH_USER/$SSH_USER/g" /etc/systemd/system/shazam-xhost.service
 sed -ie "s/SHARE_PATH/$SHARE_PATH/g" /etc/systemd/system/shazam-daemon.service
-cp scripts/xhost_shazam.sh /usr/bin/xhost-shazam
+cp bin/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
 
 echo "Enabling i2s slave mode"
