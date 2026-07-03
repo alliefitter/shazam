@@ -35,7 +35,6 @@ sudo useradd -r -s /bin/false shazam
 
 echo "Deploying"
 mkdir -p /app/shazam
-mkdir /etc/lightdm/lightdm.conf.d/
 cp dist/*.whl /app/shazam
 cp etc/nginx/* /etc/nginx/conf.d
 cp etc/systemd/* /etc/systemd/system/
