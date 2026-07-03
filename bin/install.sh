@@ -25,7 +25,7 @@ git clone https://github.com/alliefitter/shazam.git
 cd shazam
 
 echo "Build shazam"
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 "$UV" build
 
 echo "Adding users"
