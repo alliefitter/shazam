@@ -10,23 +10,23 @@ fi
 
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export UV=/root/.local/bin/uv
-export SSH_USER=$(<$SHARE_PATH/SSH_USER)
+source /usr/share/.env
 echo "Using ssh user $SSH_USER"
 echo "User lib path $LIB_PATH"
 echo "User share path $SHARE_PATH"
 
-mv /home/$SSH_USER/.ssh/shazam.pub /home/$SSH_USER/.ssh/authorized_keys
-chown -R $SSH_USER:$SSH_USER /home/$SSH_USER/.ssh/
+mv "/home/$SSH_USER/.ssh/shazam.pub" "/home/$SSH_USER/.ssh/authorized_keys"
+chown -R "$SSH_USER:$SSH_USER" "/home/$SSH_USER/.ssh/"
 
 echo "Checkout lib"
-mkdir -p $LIB_PATH
-cd $LIB_PATH
+mkdir -p "$LIB_PATH"
+cd "$LIB_PATH"
 git clone https://raw.githubusercontent.com/alliefitter/shazam.git
 cd shazam
 
 echo "Build shazam"
 curl -sSL https://install.python-poetry.org | python3 -
-$UV build
+"$UV" build
 
 echo "Adding users"
 sudo useradd -r -s /bin/false shazam
@@ -46,8 +46,8 @@ cp scripts/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
 
 echo "Enabling i2s slave mode"
-git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git ${LIB_PATH}i2s
-cd ${LIB_PATH}i2s
+git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${LIB_PATH}i2s"
+cd "${LIB_PATH}i2s"
 sed -ie "s/bitclock-frequency = <1536000>/bitclock-frequency = <3072000>/g" /etc/systemd/system/shazam-daemon.conf
 dtc -@ -I dts -O dtb -Wno-unit_address_vs_reg -o genericstereoaudiocodec.dtbo genericstereoaudiocodec.dts
 cp genericstereoaudiocodec.dtbo /boot/firmware/overlays
@@ -56,8 +56,8 @@ echo "Installing shazam"
 cd /app/shazam
 virtualenv venv
 ./venv/bin/pip3 install *.whl
-touch ${SHARE_PATH}shazam.db
-. ${SHARE_PATH}.env
+touch "${SHARE_PATH}shazam.db"
+. "$SHARE_PATH.env"
 ./venv/bin/alembic upgrade head
 
 echo "Changing app ownership"
