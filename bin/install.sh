@@ -21,7 +21,7 @@ chown -R "$SSH_USER:$SSH_USER" "/home/$SSH_USER/.ssh/"
 echo "Checkout lib"
 mkdir -p "$LIB_PATH"
 cd "$LIB_PATH"
-git clone https://raw.githubusercontent.com/alliefitter/shazam.git
+git clone https://github.com/alliefitter/shazam.git
 cd shazam
 
 echo "Build shazam"
