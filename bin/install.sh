@@ -47,9 +47,9 @@ cp scripts/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
 
 echo "Enabling i2s slave mode"
-git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${LIB_PATH}i2s"
-cd "${LIB_PATH}i2s"
-sed -ie "s/bitclock-frequency = <1536000>/bitclock-frequency = <3072000>/g" /etc/systemd/system/shazam-daemon.conf
+git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${SHARE_PATH}i2s"
+cd "${SHARE_PATH}i2s"
+sed -ie "s/bitclock-frequency = <1536000>/bitclock-frequency = <3072000>/g" genericstereoaudiocodec.dts
 dtc -@ -I dts -O dtb -Wno-unit_address_vs_reg -o genericstereoaudiocodec.dtbo genericstereoaudiocodec.dts
 cp genericstereoaudiocodec.dtbo /boot/firmware/overlays
 
