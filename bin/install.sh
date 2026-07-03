@@ -10,7 +10,7 @@ fi
 
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export UV=/root/.local/bin/uv
-source /usr/share/.env
+source $SHARE.env
 echo "Using ssh user $SSH_USER"
 echo "User lib path $LIB_PATH"
 echo "User share path $SHARE_PATH"
@@ -27,6 +27,7 @@ cd shazam
 echo "Build shazam"
 curl -LsSf https://astral.sh/uv/install.sh | sh
 "$UV" python install 3.12
+"$UV" python pin 3.12
 "$UV" build
 
 echo "Adding users"
@@ -58,7 +59,6 @@ cd /app/shazam
 virtualenv venv
 ./venv/bin/pip3 install *.whl
 touch "${SHARE_PATH}shazam.db"
-. "$SHARE_PATH.env"
 ./venv/bin/alembic upgrade head
 
 echo "Changing app ownership"
