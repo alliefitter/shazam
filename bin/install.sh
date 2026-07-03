@@ -56,7 +56,7 @@ cp genericstereoaudiocodec.dtbo /boot/firmware/overlays
 
 echo "Installing shazam"
 cd /app/shazam
-virtualenv venv
+"$UV" run python -m venv venv
 ./venv/bin/pip3 install *.whl
 touch "${SHARE_PATH}shazam.db"
 ./venv/bin/alembic upgrade head
