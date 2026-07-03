@@ -59,7 +59,7 @@ cd /app/shazam
 "$UV" run python -m venv venv
 ./venv/bin/pip3 install *.whl
 touch "${SHARE_PATH}shazam.db"
-./venv/bin/alembic upgrade head
+./venv/bin/alembic -c $SHARE_PATHshazam/alembic.ini upgrade head
 
 echo "Changing app ownership"
 chown -R shazam:shazam /app/shazam
