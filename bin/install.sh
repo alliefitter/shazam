@@ -48,7 +48,7 @@ sed -ie "s/SHARE_PATH/$SHARE_PATH/g" /etc/systemd/system/shazam-daemon.service
 cp bin/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
 "$UV" sync
-`"$UV" run alembic upgrade head`
+"$UV" run alembic upgrade head
 
 echo "Enabling i2s slave mode"
 git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${SHARE_PATH}i2s"
