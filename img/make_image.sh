@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 export DIR="$(dirname "$(realpath "$0")")"
-echo "$PI_USER" > SSH_USER
 sudo sdm --customize \
   --plugin user:"adduser=$PI_USER|password=$PASS" \
   --plugin apps:"apps=@$DIR/apps" \
