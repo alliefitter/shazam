@@ -15,6 +15,8 @@ from shazam.daemon.ui.song_details import SongDetails
 SHARE = files("shazam.share")
 
 logger = getLogger(__name__)
+ALBUM_COVER_DIMENSIONS = (600, 600)
+ALBUM_COVER_POSITION = (20, 100)
 
 
 class Screen:
@@ -53,13 +55,13 @@ class Screen:
         song_details = SongDetails(song, previous_song)
         background = self._get_background()
         if song.album_cover:
-            album_img = image_open(BytesIO(song.album_cover)).resize((360, 360))
-            background.paste(album_img, (20, 60))
+            album_img = image_open(BytesIO(song.album_cover)).resize(ALBUM_COVER_DIMENSIONS)
+            background.paste(album_img, ALBUM_COVER_POSITION)
         else:
             placeholder_img = image_open(
                 str(SHARE.joinpath("textured_grey.jpg"))
-            ).resize((360, 360))
-            background.paste(placeholder_img, (20, 60))
+            ).resize(ALBUM_COVER_DIMENSIONS)
+            background.paste(placeholder_img, ALBUM_COVER_POSITION)
 
         background = song_details.draw(background)
         photo = PhotoImage(background)
@@ -75,4 +77,4 @@ class Screen:
         self.root.mainloop()
 
     def _get_background(self) -> Image:
-        return image_open(str(SHARE.joinpath("grey_shadow_box.jpg")))
+        return image_open(str(SHARE.joinpath("grey_shadow_box.jpg"))).resize((1280, 800))

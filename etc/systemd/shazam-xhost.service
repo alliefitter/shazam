@@ -1,6 +1,6 @@
 [Unit]
 Description=Allow shazam user access to xserver
-After=graphical.target
+After=display-manager.service
 
 [Service]
 Type=oneshot

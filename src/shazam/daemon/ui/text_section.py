@@ -3,10 +3,10 @@ from importlib.resources import files
 from PIL.Image import Image
 from PIL.ImageFont import FreeTypeFont, truetype
 
-from shazam.daemon.ui.lib import draw_text_with_shadow, text_height, wrap_text
+from shazam.daemon.ui.lib import draw_text_with_shadow, text_height
 
 SHARE = files("shazam.share")
-TEXT_X = 420
+TEXT_X = 660
 HEADER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), 20)
 
 
@@ -43,6 +43,6 @@ class TextSection:
             self.label,
             (TEXT_X, label_y),
             self.font,
-            (140, 140, 140, 255),
+            (200, 200, 200, 255),
             (0, 0, 0, 255),
         )

@@ -4,13 +4,13 @@ from PIL.Image import Image
 from PIL.ImageFont import truetype
 
 from shazam.daemon.song_lookup import SongInfo
-from shazam.daemon.ui.lib import logger, wrap_text
+from shazam.daemon.ui.lib import wrap_text
 from shazam.daemon.ui.text_section import TextSection
 
 SHARE = files("shazam.share")
-ALBUM_COVER_TOP = 60
-SECTION_SPAN = 260
-PREVIOUS_SONG_SPAN = 360
+ALBUM_COVER_TOP = 100
+SECTION_SPAN = 500
+PREVIOUS_SONG_SPAN = 600
 TITLE_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), 28)
 OTHER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), 24)
 PREVIOUS_SONG_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), 16)
@@ -48,7 +48,7 @@ class SongDetails:
         return img
 
     def _draw_sections(
-        self, img: Image, sections: list[TextSection], y: int, span_height: int
+            self, img: Image, sections: list[TextSection], y: int, span_height: int
     ) -> Image:
         total_height = sum([s.total_height for s in sections])
         n = len(sections)

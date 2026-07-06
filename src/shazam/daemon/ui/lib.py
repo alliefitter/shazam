@@ -7,7 +7,7 @@ from PIL.ImageFont import FreeTypeFont
 logger = getLogger(__name__)
 
 MAX_WIDTH = 360
-_MEASURE = Draw(new("RGBA", (800, 480)))
+_MEASURE = Draw(new("RGBA", (1280, 800)))
 
 
 def wrap_text(text: str, font: FreeTypeFont):
@@ -32,14 +32,14 @@ def wrap_text(text: str, font: FreeTypeFont):
 
 
 def draw_text_with_shadow(
-    img: Image,
-    text: str,
-    pos: tuple[int, int],
-    font: FreeTypeFont,
-    text_color: tuple[int, int, int, int],
-    shadow_color: tuple[int, int, int, int],
-    shadow_offset: tuple[int, int] = (2, -1),
-    underline: bool = False,
+        img: Image,
+        text: str,
+        pos: tuple[int, int],
+        font: FreeTypeFont,
+        text_color: tuple[int, int, int, int],
+        shadow_color: tuple[int, int, int, int],
+        shadow_offset: tuple[int, int] = (2, -1),
+        underline: bool = False,
 ) -> Image:
     x, y = pos
     ox, oy = shadow_offset

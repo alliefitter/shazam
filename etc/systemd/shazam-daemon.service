@@ -1,6 +1,7 @@
 [Unit]
 Description=Shazam daemon
 After=shazam-xhost.service
+Wants=shazam-xhost.service
 
 [Service]
 Environment="DISPLAY=:0"
