@@ -35,7 +35,6 @@ cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/X11/* /etc/X11/xorg.conf.d/
 cp etc/config.txt /boot/firmware/
 cp etc/docker-compose.yaml /app/shazam/
-cp etc/.env /app/shazam/
 touch /app/shazam/shazam.db
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/systemd/system/shazam-xhost.service
@@ -44,6 +43,7 @@ sed -ie "s/USER_ID/$(id -u shazam)/g" /app/shazam/docker-compose.yaml
 sed -ie "s/GROUP_ID/$(id -g shazam)/g" /app/shazam/docker-compose.yaml
 cp bin/xhost_shazam.sh /usr/bin/xhost-shazam
 chmod +x /usr/bin/xhost-shazam
+chown -R shazam:shazam /app/shazam
 
 echo "Enabling i2s slave mode"
 git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git /tmp/i2s
