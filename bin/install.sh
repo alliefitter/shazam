@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+SSH_USER="$(whoami)"
+
 echo "Installing packages"
 apt-get update
 apt-get install -y git lightdm openbox vim x11-xserver-utils xserver-xorg-core
@@ -38,7 +40,6 @@ cp etc/docker-compose.yaml /app/shazam/
 touch /app/shazam/shazam.db
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/systemd/system/shazam-xhost.service
-sed -ie "s|SHARE_PATH|${SHARE_PATH}|g" /etc/systemd/system/shazam-daemon.service
 sed -ie "s/USER_ID/$(id -u shazam)/g" /app/shazam/docker-compose.yaml
 sed -ie "s/GROUP_ID/$(id -g shazam)/g" /app/shazam/docker-compose.yaml
 cp bin/xhost_shazam.sh /usr/bin/xhost-shazam
