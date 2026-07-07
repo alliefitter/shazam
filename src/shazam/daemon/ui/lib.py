@@ -6,7 +6,7 @@ from PIL.ImageFont import FreeTypeFont
 
 logger = getLogger(__name__)
 
-MAX_WIDTH = 360
+MAX_WIDTH = 600
 _MEASURE = Draw(new("RGBA", (1280, 800)))
 
 

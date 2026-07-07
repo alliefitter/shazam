@@ -6,14 +6,16 @@ from PIL.ImageFont import truetype
 from shazam.daemon.song_lookup import SongInfo
 from shazam.daemon.ui.lib import wrap_text
 from shazam.daemon.ui.text_section import TextSection
+from shazam.lib.config import get_config
 
+config = get_config()
 SHARE = files("shazam.share")
 ALBUM_COVER_TOP = 100
 SECTION_SPAN = 500
 PREVIOUS_SONG_SPAN = 600
-TITLE_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), 28)
-OTHER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), 24)
-PREVIOUS_SONG_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), 16)
+TITLE_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), config.title_font_size)
+OTHER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Regular.ttf")), config.other_font_size)
+PREVIOUS_SONG_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), config.previous_song_font_size)
 
 
 class SongDetails:

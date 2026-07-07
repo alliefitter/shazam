@@ -37,7 +37,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 "${UV}" build
 
 echo "Adding users"
-sudo useradd -r -s /bin/false shazam
+sudo useradd -r -s /bin/false -G audio shazam
 
 echo "Deploying"
 mkdir -p /app/shazam
@@ -62,6 +62,7 @@ echo "Enabling i2s slave mode"
 git clone https://github.com/AmateurAudioDude/Raspberry-Pi-I2S-capture-device-as-slave.git "${SHARE_PATH}i2s"
 cd "${SHARE_PATH}i2s" || { echo "ERROR: could not cd to ${SHARE_PATH}i2s"; exit 1; }
 sed -ie "s/bitclock-frequency = <1536000>/bitclock-frequency = <3072000>/g" genericstereoaudiocodec.dts
+sed -ie "s/dai-tdm-slot-width = <16>/dai-tdm-slot-width = <32>/g" genericstereoaudiocodec.dts
 dtc -@ -I dts -O dtb -Wno-unit_address_vs_reg -o genericstereoaudiocodec.dtbo genericstereoaudiocodec.dts
 cp genericstereoaudiocodec.dtbo /boot/firmware/overlays
 
@@ -72,6 +73,8 @@ cd /app/shazam || { echo "ERROR: could not cd to /app/shazam"; exit 1; }
 
 echo "Changing app ownership"
 chown -R shazam:shazam /app/shazam
+chown -R shazam:shazam /usr/share/shazam/.env
+chown -R shazam:shazam /usr/share/shazam/shazam.db
 echo "Deployment complete"
 
 echo "Setting up systemd"

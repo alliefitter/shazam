@@ -4,10 +4,12 @@ from PIL.Image import Image
 from PIL.ImageFont import FreeTypeFont, truetype
 
 from shazam.daemon.ui.lib import draw_text_with_shadow, text_height
+from shazam.lib.config import get_config
 
+config = get_config()
 SHARE = files("shazam.share")
 TEXT_X = 660
-HEADER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), 20)
+HEADER_FONT = truetype(str(SHARE.joinpath("CourierPrime-Bold.ttf")), config.header_font_size)
 
 
 class TextSection:
