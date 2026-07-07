@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-SSH_USER="$(whoami)"
+SSH_USER="${SSH_USER:-$(whoami)}"
+
+if [ "$EUID" -ne 0 ]; then
+  exec sudo SSH_USER="$SSH_USER" "./$0" "$@"
+fi
 
 echo "Installing packages"
 apt-get update
 apt-get install -y git lightdm openbox vim x11-xserver-utils xserver-xorg-core
 
 echo "Installing Docker"
-curl -fsSL https://get.docker.com | sh
+#curl -fsSL https://get.docker.com | sh
 
 echo "Cloning shazam"
 git clone https://github.com/alliefitter/shazam.git /tmp/shazam
