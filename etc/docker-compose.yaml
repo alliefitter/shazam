@@ -1,0 +1,15 @@
+services:
+  daemon:
+    image: horde.home:5000/shazam:latest
+    user: "USER_ID:GROUP_ID"
+    env_file:
+      - /app/shazam/.env
+    devices:
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /app/shazam/shazam.db:/app/shazam.db
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw

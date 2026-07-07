@@ -1,0 +1,8 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - docker compose -f share/docker-compose.build.yaml build
+      - docker tag shazam-daemon:latest horde.home:5000/shazam-daemon:latest
+      - docker push horde.home:5000/shazam-daemon:latest

@@ -1,14 +1,16 @@
 [Unit]
 Description=Shazam daemon
-After=shazam-xhost.service
+After=shazam-xhost.service docker.service
 Wants=shazam-xhost.service
+Requires=docker.service
 
 [Service]
 Environment="DISPLAY=:0"
-EnvironmentFile=SHARE_PATH.env
 User=shazam
 Group=shazam
-ExecStart=/app/shazam/venv/bin/python -m shazam.daemon
+WorkingDirectory=/app/shazam/
+ExecStart=/usr/bin/docker compose -f docker-compose.yaml up
+ExecStop=/usr/bin/docker compose -f docker-compose.yaml down
 Restart=on-failure
 RestartSec=10
 
