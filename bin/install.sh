@@ -36,6 +36,7 @@ sed -ie "s|^ACR_HOST=.*|ACR_HOST=${ACR_HOST}|" /app/shazam/.env
 sed -ie "s|^ACR_ACCESS_KEY=.*|ACR_ACCESS_KEY=${ACR_ACCESS_KEY}|" /app/shazam/.env
 sed -ie "s|^ACR_ACCESS_SECRET=.*|ACR_ACCESS_SECRET=${ACR_ACCESS_SECRET}|" /app/shazam/.env
 
+cp etc/docker/* /etc/docker/
 cp etc/systemd/* /etc/systemd/system/
 cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/X11/* /etc/X11/xorg.conf.d/
@@ -64,3 +65,5 @@ systemctl enable shazam-daemon.service
 systemctl enable shazam-xhost.service
 raspi-config nonint do_boot_behaviour B4
 echo "Installation complete!"
+
+sudo reboot

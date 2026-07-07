@@ -1,0 +1,5 @@
+{
+  "insecure-registries": [
+    "horde.home:5000"
+  ]
+}

@@ -1,6 +1,6 @@
 services:
   daemon:
-    image: horde.home:5000/shazam:latest
+    image: horde.home:5000/shazam-daemon:latest
     user: "USER_ID:GROUP_ID"
     env_file:
       - /app/shazam/.env
