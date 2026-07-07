@@ -1,6 +1,7 @@
 services:
   daemon:
     image: shazam-daemon:latest
+    platform: linux/arm64
     build:
       dockerfile: share/shazam.Dockerfile
       context: ../

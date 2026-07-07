@@ -42,7 +42,8 @@ cp etc/lightdm/10-shazam.conf /etc/lightdm/lightdm.conf.d/
 cp etc/X11/* /etc/X11/xorg.conf.d/
 cp etc/config.txt /boot/firmware/
 cp etc/docker-compose.yaml /app/shazam/
-touch /app/shazam/shazam.db
+mkdir /app/shazam/data/
+touch /app/shazam/data/shazam.db
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/lightdm/lightdm.conf.d/10-shazam.conf
 sed -ie "s/SSH_USER/${SSH_USER}/g" /etc/systemd/system/shazam-xhost.service
 sed -ie "s/USER_ID/$(id -u shazam)/g" /app/shazam/docker-compose.yaml

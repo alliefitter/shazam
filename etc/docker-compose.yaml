@@ -1,6 +1,9 @@
 services:
   daemon:
     image: horde.home:5000/shazam-daemon:latest
+    restart: on-failure
+    pull_policy: always
+    platform: linux/arm64
     user: "USER_ID:GROUP_ID"
     env_file:
       - /app/shazam/.env
@@ -11,5 +14,5 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
-      - /app/shazam/shazam.db:/app/shazam.db
+      - /app/shazam/data:/app/data
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
