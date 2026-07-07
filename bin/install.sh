@@ -11,7 +11,7 @@ apt-get update
 apt-get install -y git lightdm openbox vim x11-xserver-utils xserver-xorg-core
 
 echo "Installing Docker"
-#curl -fsSL https://get.docker.com | sh
+curl -fsSL https://get.docker.com | sh
 
 echo "Cloning shazam"
 git clone https://github.com/alliefitter/shazam.git /tmp/shazam
