@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Reattach stdin to the terminal: when piped via `curl | bash -`, stdin is
+# the script text itself, so the `read` prompts below would silently
+# consume subsequent lines of this script instead of waiting for input.
+exec < /dev/tty
+
 SSH_USER="${SSH_USER:-$(whoami)}"
 
 echo "Installing packages"
